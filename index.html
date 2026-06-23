@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Крестики-нолики</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ГЛАВНОЕ МЕНЮ -->
+  <div id="screen-menu" class="screen active">
+    <div class="menu-bg">
+      <div class="floating-symbol s1">✕</div>
+      <div class="floating-symbol s2">○</div>
+      <div class="floating-symbol s3">✕</div>
+      <div class="floating-symbol s4">○</div>
+    </div>
+    <div class="menu-content">
+      <div class="logo">
+        <span class="logo-x">✕</span>
+        <span class="logo-o">○</span>
+      </div>
+      <h1 class="title">Крестики<br/>Нолики</h1>
+      <p class="subtitle">Игра против искусственного интеллекта</p>
+      <div class="menu-buttons">
+        <button class="btn btn-primary" id="btn-play">
+          <span class="btn-icon">▶</span> Начать игру
+        </button>
+        <button class="btn btn-secondary" id="btn-difficulty">
+          <span class="btn-icon">⚙</span> Сложность: <span id="diff-label">Средняя</span>
+        </button>
+        <button class="btn btn-secondary" id="btn-stats">
+          <span class="btn-icon">📊</span> Статистика
+        </button>
+      </div>
+      <div class="stats-preview" id="stats-preview"></div>
+    </div>
+  </div>
+
+  <!-- ВЫБОР СИМВОЛА -->
+  <div id="screen-choose" class="screen">
+    <div class="choose-content">
+      <button class="back-btn" id="back-from-choose">← Меню</button>
+      <h2>Выберите символ</h2>
+      <p class="choose-hint">Крестики ходят первыми</p>
+      <div class="symbol-picker">
+        <button class="symbol-btn" id="pick-x">
+          <span class="sym-display x-sym">✕</span>
+          <span class="sym-name">Крестики</span>
+          <span class="sym-note">Первый ход</span>
+        </button>
+        <button class="symbol-btn" id="pick-o">
+          <span class="sym-display o-sym">○</span>
+          <span class="sym-name">Нолики</span>
+          <span class="sym-note">Второй ход</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ИГРОВОЙ ЭКРАН -->
+  <div id="screen-game" class="screen">
+    <div class="game-header">
+      <button class="back-btn" id="back-from-game">← Меню</button>
+      <div class="scoreboard">
+        <div class="score-block" id="score-player-block">
+          <span class="score-label" id="score-player-sym">✕</span>
+          <span class="score-num" id="score-player">0</span>
+          <span class="score-name">Вы</span>
+        </div>
+        <div class="score-block draws">
+          <span class="score-label">—</span>
+          <span class="score-num" id="score-draw">0</span>
+          <span class="score-name">Ничья</span>
+        </div>
+        <div class="score-block" id="score-ai-block">
+          <span class="score-label" id="score-ai-sym">○</span>
+          <span class="score-num" id="score-ai">0</span>
+          <span class="score-name">ИИ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="turn-banner" id="turn-banner">Ваш ход</div>
+
+    <div class="board-wrap">
+      <div class="board" id="board">
+        <div class="cell" data-i="0"></div>
+        <div class="cell" data-i="1"></div>
+        <div class="cell" data-i="2"></div>
+        <div class="cell" data-i="3"></div>
+        <div class="cell" data-i="4"></div>
+        <div class="cell" data-i="5"></div>
+        <div class="cell" data-i="6"></div>
+        <div class="cell" data-i="7"></div>
+        <div class="cell" data-i="8"></div>
+        <svg class="win-line" id="win-line" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <line id="win-line-el" x1="0" y1="0" x2="0" y2="0" stroke="#f0c040" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="game-actions">
+      <button class="btn btn-small" id="btn-restart">↺ Новая партия</button>
+      <button class="btn btn-small btn-outline" id="btn-menu-from-game">⌂ Меню</button>
+    </div>
+
+    <!-- Оверлей результата -->
+    <div class="result-overlay" id="result-overlay">
+      <div class="result-card">
+        <div class="result-emoji" id="result-emoji">🎉</div>
+        <div class="result-text" id="result-text">Вы победили!</div>
+        <div class="result-sub" id="result-sub"></div>
+        <div class="result-btns">
+          <button class="btn btn-primary" id="btn-next-round">Ещё партия</button>
+          <button class="btn btn-secondary" id="btn-to-menu">В меню</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- СТАТИСТИКА -->
+  <div id="screen-stats" class="screen">
+    <div class="stats-content">
+      <button class="back-btn" id="back-from-stats">← Меню</button>
+      <h2>Статистика</h2>
+      <div class="stats-grid" id="stats-grid"></div>
+      <div class="history-title">История игр</div>
+      <div class="history-list" id="history-list"></div>
+      <button class="btn btn-danger" id="btn-clear-stats">🗑 Сбросить</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
